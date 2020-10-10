@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <title>例題6_3</title>
+    </head>
+    <body>
+        <p>・・・健康チェックアプリ・・・</p>
+        名前：<input id="username"><br>
+        身長：<input id="height">cm<br>
+        体重：<input id="weight">kg<br>
+        性別：<select id="sex">
+            <option value="man">男</option>
+            <option value="woman">女</option>
+        </select><br>
+        健康指標：<select id="check">
+            <option value="BMI">BMI</option>
+            <option value="ROHRER">ローレル指数</option>
+            <option value="FAT">肥満度</option>
+        </select><br><br>
+
+        <button id="btn">健康チェック</button><br><br>
+        <textarea id="output" cols="40" rows="2"></textarea><br>
+
+        <script tyoe="module">
+            btn.onclick=function(){
+                const my_name=username.value;
+                const helth=check.value;
+                const my_height=height.value;
+                const my_weight=weight.value;
+                if(helth==="BMI"){
+                    const work=my_height/100;
+                    const BMI=my_weight/work**2;
+                    output.value=my_name+"さんの"+helth+"値は\n"+BMI+"です。";
+                }
+                if(helth==="ROHRER"){
+                    const Rohrer=my_weight/my_height**3*10**7;
+                    output.value=my_name+"さんの"+helth+"指数は\n"+Rohrer+"です。";
+                }
+                if(helth==="FAT"){
+                    let s_weight;
+                    if(sex.value==="man"){
+                        s_weight=(my_height-139)*0.613+42.2;
+                    }
+                    else{
+                        s_weight=(my_height-139)*0.510+43.2;
+                    }
+                    const Fat=(my_weight-s_weight)/s_weight*100;
+                    output.value=my_name+"さんの"+"肥満度は\n"+Fat+"%です。";
+                }
+            }
+
+        </script>
+    </body>
+</html>
